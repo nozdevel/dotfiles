@@ -1,0 +1,77 @@
+#!/bin/sh
+# Good luck!
+
+set -e
+set -u
+
+readonly DOT_DIRECTORY="${HOME}/dotfiles"
+readonly DOT_TARBALL="https://github.com/nozdevel/dotfiles/tarball/master"
+readonly REMOTE_URL="https://github.com/nozdevel/dotfiles.git"
+
+# 使い方なのだよ
+usage() {
+  name=`basename $0`
+  cat <<EOF
+Usage:
+  $name [arguments] [command]
+Commands:
+  deploy
+  initialize
+Arguments:
+  -f $(tput setaf 1)** warning **$(tput sgr0) Overwrite dotfiles.
+  -h Print help (this message)
+EOF
+  exit 1
+}
+
+# オプション -fは上書き、-hはヘルプ表示
+while getopts :f:h opt; do
+  case ${opt} in
+    f)
+      OVERWRITE=true
+      ;;
+    h)
+      usage
+      ;;
+  esac
+done
+shift $((OPTIND - 1))
+
+
+# Dotfilesがない、あるいは上書きオプションがあればダウンロード
+if [ -n "${OVERWRITE}" -o ! -d ${DOT_DIRECTORY} ]; then
+  echo "Downloading dotfiles..."
+  rm -rf ${DOT_DIRECTORY}
+  mkdir ${DOT_DIRECTORY}
+
+  # ... 中略
+
+  echo $(tput setaf 2)Download dotfiles complete!. ✔︎$(tput sgr0)
+fi
+
+link_files() {
+  # ... Deploy処理
+}
+
+initialize() {
+  # ... Initialize処理
+}
+
+# 引数によって場合分け
+command=$1
+[ $# -gt 0 ] && shift
+
+# 引数がなければヘルプ
+case $command in
+  deploy)
+    link_files
+    ;;
+  init*)
+    initialize
+    ;;
+  *)
+    usage
+    ;;
+esac
+
+exit 0
