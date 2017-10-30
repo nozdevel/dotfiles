@@ -4,10 +4,9 @@ my development environment
 ## How to Intall
 
 ```
-$ bash -c "$(curl -fsSL raw.github.com/nozdevel/dotfiles/master/setup)" -s init
+git clone https://github.com/nozdevel/dotfiles.git && cd dotfiles && source bootstrap.sh
 
+or
 
-with proxy
-
-$ bash -c "$(curl -U <user>:<pass> -x <proxy.xxx.co.jp>:<port> -fsSL raw.github.com/nozdevel/dotfiles/master/setup)" -s init
+cd; curl -#L https://github.com/nozdevel/dotfiles/tarball/master | tar -xzv --strip-components 1 --exclude={README.md,bootstrap.sh,.osx,MIT_LICENSE.txt}
 ```
