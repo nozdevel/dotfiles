@@ -1,3 +1,6 @@
+set nocompatible
+set encoding=utf-8
+
 "-----------------------------------------
 "dein Scripts-----------------------------
 if &compatible
@@ -26,12 +29,16 @@ if dein#load_state('/home/dot/.vim/dein/')
     call dein#add('Shougo/neocomplcache.vim')
   endif
 
+  " utility
   call dein#add('scrooloose/nerdtree')
   call dein#add('nathanaelkane/vim-indent-guides')
 
   call dein#add('Shougo/unite.vim')
   call dein#add('vim-syntastic/syntastic')
   call dein#add('soramugi/auto-ctags.vim')
+
+  call dein#add('fholgado/minibufexpl.vim')
+  call dein#add('Lokaltog/vim-powerline')
 
 
   " color scheme
@@ -67,7 +74,7 @@ endif
 " Personal Setup
 filetype plugin indent on
 syntax enable
-colorscheme primary
+colorscheme elflord
 set t_Co=256
 set background=dark
 set number
@@ -78,6 +85,24 @@ set tabstop=4
 set shiftwidth=4
 set expandtab
 set whichwrap=b,s,h,l,<,>,[,]
+set list
+set listchars=tab:>\ ,trail:~
+set ruler
+set nowrapscan
+
+" highlight em space
+function! ZenkakuSpace()
+    highlight ZenkakuSpace cterm=underline ctermfg=lightblue guibg=darkgray
+endfunction
+
+if has('syntax')
+    augroup ZenkakuSpace
+        autocmd!
+        autocmd ColorScheme * call ZenkakuSpace()
+        autocmd VimEnter,WinEnter,BufRead * let w:m1=matchadd('ZenkakuSpace', '　')
+    augroup END
+    call ZenkakuSpace()
+endif
 
 " auto comment off
 augroup auto_comment_off
