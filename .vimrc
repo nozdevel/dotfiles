@@ -3,6 +3,7 @@
 filetype plugin indent on
 syntax enable
 colorscheme elflord
+set path+=**
 set encoding=utf-8
 set statusline=2
 set t_Co=256
@@ -75,10 +76,13 @@ if dein#load_state('/home/dot/.vim/dein/')
   call dein#add('nathanaelkane/vim-indent-guides')
 
   call dein#add('Shougo/unite.vim')
-  call dein#add('vim-syntastic/syntastic')
+
+  "call dein#add('tpope/vim-pathogen')
+  "call dein#add('vim-syntastic/syntastic')
   call dein#add('soramugi/auto-ctags.vim')
 
   call dein#add('fholgado/minibufexpl.vim')
+  "call dein#add('junegunn/fzf.vim')
 
   " status line
   call dein#add('Lokaltog/vim-powerline')
@@ -125,3 +129,6 @@ if has('lua')
 else
   runtime! plugin_conf/neocomp/neocomplcache.vim
 endif
+
+" pathogen
+"execute pathogen#infect()
