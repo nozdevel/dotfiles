@@ -1,47 +1,3 @@
-"-----------------------------------------
-" Personal Setup
-filetype plugin indent on
-syntax enable
-colorscheme elflord
-set path+=**
-set encoding=utf-8
-set statusline=2
-set t_Co=256
-set background=dark
-set number
-set showmatch
-set autoindent
-set smartindent
-set tabstop=4
-set shiftwidth=4
-set expandtab
-"set whichwrap=b,s,h,l,<,>,[,]
-set list
-set listchars=tab:>\ ,trail:~
-set ruler
-set nowrapscan
-
-" highlight em space
-function! ZenkakuSpace()
-    highlight ZenkakuSpace cterm=underline ctermfg=lightblue guibg=darkgray
-endfunction
-
-if has('syntax')
-    augroup ZenkakuSpace
-        autocmd!
-        autocmd ColorScheme * call ZenkakuSpace()
-        autocmd VimEnter,WinEnter,BufRead * let w:m1=matchadd('ZenkakuSpace', '　')
-    augroup END
-    call ZenkakuSpace()
-endif
-
-" auto comment off
-augroup auto_comment_off
-    autocmd!
-    autocmd BUfEnter * setlocal formatoptions-=r
-    autocmd BUfEnter * setlocal formatoptions-=o
-augroup END
-
 
 "-----------------------------------------
 "dein Scripts-----------------------------
@@ -132,3 +88,49 @@ endif
 
 " pathogen
 "execute pathogen#infect()
+
+"-----------------------------------------
+" Personal Setup
+filetype plugin indent on
+syntax enable
+colorscheme elflord
+set path+=**
+set encoding=utf-8
+set statusline=2
+set t_Co=256
+set background=dark
+set number
+set showmatch
+set autoindent
+set smartindent
+set tabstop=4
+set shiftwidth=4
+set expandtab
+"set whichwrap=b,s,h,l,<,>,[,]
+set list
+set listchars=tab:>\ ,trail:~
+set ruler
+set nowrapscan
+set noequalalways
+set incsearch
+
+" highlight em space
+function! ZenkakuSpace()
+    highlight ZenkakuSpace cterm=underline ctermfg=lightblue guibg=darkgray
+endfunction
+
+if has('syntax')
+    augroup ZenkakuSpace
+        autocmd!
+        autocmd ColorScheme * call ZenkakuSpace()
+        autocmd VimEnter,WinEnter,BufRead * let w:m1=matchadd('ZenkakuSpace', '　')
+    augroup END
+    call ZenkakuSpace()
+endif
+
+" auto comment off
+augroup auto_comment_off
+    autocmd!
+    autocmd BUfEnter * setlocal formatoptions-=r
+    autocmd BUfEnter * setlocal formatoptions-=o
+augroup END
