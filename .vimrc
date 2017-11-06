@@ -113,6 +113,7 @@ set ruler
 set nowrapscan
 set noequalalways
 set incsearch
+set ve=block
 
 " highlight em space
 function! ZenkakuSpace()
