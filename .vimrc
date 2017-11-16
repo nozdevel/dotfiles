@@ -32,13 +32,15 @@ if dein#load_state('/home/dot/.vim/dein/')
   call dein#add('nathanaelkane/vim-indent-guides')
 
   call dein#add('Shougo/unite.vim')
+  call dein#add('tsukkee/unite-tag')
 
+  call dein#add('bronson/vim-trailing-whitespace')
   "call dein#add('tpope/vim-pathogen')
   "call dein#add('vim-syntastic/syntastic')
   call dein#add('soramugi/auto-ctags.vim')
 
   call dein#add('fholgado/minibufexpl.vim')
-  "call dein#add('junegunn/fzf.vim')
+  call dein#add('junegunn/fzf.vim')
 
   " status line
   call dein#add('Lokaltog/vim-powerline')
@@ -135,3 +137,6 @@ augroup auto_comment_off
     autocmd BUfEnter * setlocal formatoptions-=r
     autocmd BUfEnter * setlocal formatoptions-=o
 augroup END
+
+" vim-trailing-whitespace
+autocmd BufWritePre * :FixWhitespace
