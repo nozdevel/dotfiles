@@ -24,7 +24,7 @@ curl -sL --proto-redir -all,https https://raw.githubusercontent.com/zplug/instal
 ```
 
 
-## refferences
+## references
 
 - [dein](https://github.com/Shougo/dein.vim)
 - [zplug](https://github.com/zplug/zplug)
