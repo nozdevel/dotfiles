@@ -3,7 +3,7 @@
 "export DTagsBaseDirSet()
 
 "       execute '!(cd ' . s:ctags_base_dir .
-"                    \ ';armtags.sh -R ' . s:ctags_base_dir . 
+"                    \ ';armtags.sh -R ' . s:ctags_base_dir .
 "                    \ ';ftags.sh -a '   . s:ctags_base_dir .
 "                    \ ';ctags -a -R '   . s:ctags_base_dir .
 "                    \ ')'
@@ -11,15 +11,10 @@
 function! DTags(...)
     if(a:0==0 || a:1=='0')
         execute '!(cd ' . s:ctags_base_dir .
-              \'  ;ctags -R --extra=+q --exclude=unit_test ' . 
+              \'  ;ctags -R --extra=+q --languages=C,C++ ' .
               \     s:ctags_base_dir . ';' .
-              \'  ../bin/ftags.sh -a -e unit_test ' . s:ctags_base_dir . ')'
-        let l:tagfile=s:ctags_base_dir . '/tags'
-        let l:tmpfile=s:ctags_base_dir . '/tmp'
-        silent execute '!mv ' . l:tagfile ' ' . l:tmpfile
-        silent execute '!sort ' . l:tmpfile  '>' . l:tagfile
-        silent execute '!rm ' . l:tmpfile
-    else 
+              \'  ~/.vim/bin/ftags.sh -a -e unit_test ' . s:ctags_base_dir . ')'
+    else
         execute '!ctags -Rn ' . s:ctags_base_dir
     endif
 endfunction
@@ -37,7 +32,7 @@ function! DTagsBaseDirSet(ctags_base_dir)
 endfunction
 
 function! DTagsBaseDirSetAtCurrentPosition()
-    let l:path="." 
+    let l:path="."
     echo l:path
     call DTagsBaseDirSet(l:path)
 endfunction
