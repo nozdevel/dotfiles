@@ -43,8 +43,10 @@ if dein#load_state('/home/dot/.vim/dein/')
   call dein#add('junegunn/fzf.vim')
 
   " status line
-  call dein#add('Lokaltog/vim-powerline')
+  "call dein#add('Lokaltog/vim-powerline')
   "call dein#add('powerline/powerline')
+  "call dein#add('itchyny/lightline.vim')
+  call dein#add('vim-airline/vim-airline')
 
 
   " color scheme
@@ -114,8 +116,10 @@ set listchars=tab:>\ ,trail:~
 set ruler
 set nowrapscan
 set noequalalways
+set hlsearch
 set incsearch
 set ve=block
+set colorcolumn=100
 
 " highlight em space
 function! ZenkakuSpace()
