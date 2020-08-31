@@ -54,6 +54,9 @@ if dein#load_state('/home/dot/.vim/dein/')
   call dein#add('tomasr/molokai')
   call dein#add('aereal/vim-colors-japanesque')
 
+  " syntax
+  call dein#add('posva/vim-vue')
+
   " You can specify revision/branch/tag.
   call dein#add('Shougo/vimshell', { 'rev': '3787e5' })
 
@@ -144,3 +147,42 @@ augroup END
 
 " vim-trailing-whitespace
 autocmd BufWritePre * :FixWhitespace
+
+" Highlight trailing spaces
+augroup HighlightTrailingSpaces
+    autocmd!
+    autocmd VimEnter,WinEnter,ColorScheme * highlight TrailingSpaces term=underline guibg=Red ctermbg=Red
+    autocmd VimEnter,WinEnter * match TrailingSpaces /\s\+$/
+augroup END
+
+" vim-airline
+"let g:airline_powerline_fonts = 1
+
+" syntax limit for big display
+"augroup vimrc-highlight
+"    autocmd!
+"    autocmd Syntax * if 10000 < line('$') | syntax sync minlines=100 | endif
+"augroup END
+
+" vim-vue
+" https://qiita.com/nabewata07/items/d92655485622aeb847a8
+autocmd FileType vue syntax sync fromstart
+let g:ft = ''
+function! NERDCommenter_before()
+    if &ft == 'vue'
+        let g:ft = 'vue'
+        let stack = synstack(line('.'), col('.'))
+        if len(stack) > 0
+            let syn = synIDattr((stack)[0], 'name')
+            if len(syn) > 0
+                exe 'setf ' . substitute(tolower(syn), '^vue_', '', '')
+            endif
+        endif
+    endif
+endfunction
+function! NERDCommenter_after()
+    if g:ft == 'vue'
+        setf vue
+        let g:ft = ''
+    endif
+endfunction
