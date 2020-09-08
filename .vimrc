@@ -85,6 +85,7 @@ endif
 " load more configs
 runtime! plugin_conf/*.vim
 runtime! key_bind/*.vim
+runtime! ftplugin/man.vim
 
 " auto complete
 if has('lua')
